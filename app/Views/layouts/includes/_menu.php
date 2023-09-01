@@ -49,10 +49,6 @@
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>Administratie
             </a>
             <ul class="menu-sub">
-                <li class="menu-item <?php if (url_is('admin/departments*')): ?>active<?php endif; ?>">
-                    <a href="<?= route_to("departments") ?>" class="menu-link">Afdelingen
-                    </a>
-                </li>   
                 <li class="menu-item <?php if (url_is('admin/locations*')): ?>active<?php endif; ?>">
                     <a href="<?= route_to("locations") ?>" class="menu-link">Locaties
                     </a>

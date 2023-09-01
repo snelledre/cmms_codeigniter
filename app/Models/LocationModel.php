@@ -15,7 +15,7 @@ class LocationModel extends Model
     protected $returnType       = Location::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['name', 'description', 'status', 'department_id'];
+    protected $allowedFields    = ['name', 'description', 'active', 'department_id'];
 
     // Dates
     protected $useTimestamps = true;
@@ -29,10 +29,6 @@ class LocationModel extends Model
         'name' => [
             'rules' => 'required|min_length[2]|max_length[64]|is_unique[locations.name,id,{id}]',
             'label' => 'Naam'
-        ],
-        'department_id' => [
-            'rules' => 'required',
-            'label' => 'afdeling'
         ],
     ];
     protected $validationMessages   = [];
@@ -52,24 +48,13 @@ class LocationModel extends Model
 
     public function getLocationById($id)
     {
-        return $this->select('locations.*, d.name as departmentname')
-            ->join('departments d', 'd.id = locations.department_id', 'left')
-            ->where('locations.id', $id)
-            ->first();
+        return $this->find($id);
     }
 
-    public function getLocationsByName($q)
+    public function getLocationByName($q)
     {
-        return $this->select('locations.*, d.name as departmentname')
-            ->join('departments d', 'd.id = locations.department_id', 'left')
-            ->orLike('locations.name', $q)
-            ->paginate(10, 'page');
-    }
-
-    public function getLocations()
-    {
-        return $this->select('locations.*, d.name as departmentname')
-            ->join('departments d', 'd.id = locations.department_id', 'left')
+        return $this->select('*')
+            ->orLike('name', $q)
             ->paginate(10, 'page');
     }
 }

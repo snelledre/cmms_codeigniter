@@ -9,12 +9,12 @@
             <small class="text-muted float-end"></small>
         </div>
         <div class="card-body">
-            <?= form_open(route_to('machines_update', $machine->id), 'class="needs-validation" novalidate'); ?>
+            <?= form_open(route_to('locations_update', $location->id), 'class="needs-validation" novalidate'); ?>
 
-            <?= $this->include('Admin/machines/form') ?>
+            <?= $this->include('Admin/locations/form') ?>
 
             <button class="btn btn-primary me-1" type="submit">Opslaan</button>
-            <a class="btn btn-secondary" href="<?= route_to('machines_show', $machine->id) ?>">Annuleren</a>
+            <a class="btn btn-secondary" href="<?= route_to('locations_show', $location->id) ?>">Annuleren</a>
 
             <?= form_close() ?>
         </div>

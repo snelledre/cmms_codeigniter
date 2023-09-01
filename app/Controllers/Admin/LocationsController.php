@@ -6,20 +6,17 @@ use App\Controllers\BaseController;
 use App\Modules\Breadcrumbs\Breadcrumbs;
 use App\Models\LocationModel;
 use App\Entities\Location;
-use App\Models\DepartmentModel;
 use Mpdf\Mpdf;
 
 class LocationsController extends BaseController
 {
     public $breadcrumb;
     private $model;
-    private $departmentmodel;
     private $title;
 
     public function __construct()
     {
         $this->model = New LocationModel();
-        $this->departmentmodel = New DepartmentModel();
         $this->title = 'Locaties';
         $this->breadcrumb = new Breadcrumbs();
         $this->breadcrumb->add('Cmms', '/');
@@ -27,14 +24,14 @@ class LocationsController extends BaseController
     }
 
     public function index()
-    {        
+    {
         $this->breadcrumb->add('Lijst', ' ');
 
         if($this->request->getGet('q')) {
             $q = $this->request->getGet('q');
-            $locations = $this->model->getLocationsByName($q);
+            $locations = $this->model->getLocationByName($q);
         } else {
-            $locations = $this->model->getLocations();
+            $locations = $this->model->paginate(10, 'page');;
         }
 
         $data = [
@@ -55,7 +52,6 @@ class LocationsController extends BaseController
             'title' => $this->title,
             'breadcrumbs' => $this->breadcrumb->render(),
             'location' => new Location(),
-            'departments' => $this->departmentmodel->findAll(),
         ];
 
         echo view('Admin/Locations/new', $data);
@@ -99,7 +95,6 @@ class LocationsController extends BaseController
             'title' => $this->title,
             'breadcrumbs' => $this->breadcrumb->render(),
             'location' => $this->getLocationOr404($id),
-            'departments' => $this->departmentmodel->findAll(),
         ];
 
         echo view('Admin/Locations/edit', $data);

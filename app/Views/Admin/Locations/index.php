@@ -21,7 +21,6 @@
             <thead class="table-dark">
                 <tr>
                     <th style="width: 5%">#</th>
-                    <th style="width: 20%">Afdeling</th>
                     <th style="width: 25%">Naam</th>
                     <th style="width: 30%">Omschrijving</th>
                     <th style="width: 10%">Status</th>
@@ -33,11 +32,10 @@
                     <?php foreach ($locations as $location) : ?>
                         <tr>
                             <td><i><?= $location->id ?></i></td>
-                            <td><?= esc($location->departmentname); ?></td>
                             <td><?= esc($location->name); ?></td>
                             <td><?= character_limiter(esc($location->description), 50); ?></td>
                             <td><span
-                                class="badge bg-label-<?= $location->status ? 'primary' : 'danger'; ?> me-1"><?= $location->status ? 'Aktief' : 'Niet aktief'; ?></span>
+                                class="badge bg-label-<?= $location->active ? 'primary' : 'danger'; ?> me-1"><?= $location->active ? 'Aktief' : 'Niet aktief'; ?></span>
                             </td>
                             <td>
                                 <div class="dropdown">

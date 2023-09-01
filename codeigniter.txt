@@ -96,5 +96,16 @@ function categoryTree($parent_id = 0, $sub_mark = ''){
 }
 
 
+…or create a new repository on the command line
+echo "# cmms_codeigniter" >> README.md
 git init
-git aad .
+git add README.md
+git commit -S -m "second commit"
+git branch -M main
+git remote add origin https://github.com/snelledre/cmms_codeigniter.git
+git push -u origin main
+
+…or push an existing repository from the command line
+git remote add origin https://github.com/snelledre/cmms_codeigniter.git
+git branch -M main
+git push -u origin main

@@ -21,16 +21,11 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="department_id">Afdeling</label>
-                <input class="form-control" type="text" name="department_id" id="department_id" value="<?= esc($location->departmentname) ?>" readonly></input>
-            </div>
-
-            <div class="mb-3">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="status" id="status" <?php if (esc($location->status)) : ?>checked<?php endif; ?> onclick="return false;" />
+                    <input class="form-check-input" type="checkbox" name="active" id="active" <?php if (esc($location->active)) : ?>checked<?php endif; ?> onclick="return false;" />
                     <label class="form-check-label" for="status">Aktief</label>
                 </div>
-            </div>            
+            </div>
 
             <div>
                 <p class="mb-1"><strong style="font-weight: 600">Gemaakt op: </strong><?= esc($location->created_at) ?></p>

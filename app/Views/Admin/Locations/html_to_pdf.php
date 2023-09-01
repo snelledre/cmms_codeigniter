@@ -18,7 +18,6 @@
             <p><strong>Gemaakt op: </strong> <?= esc($location->created_at) ?></p>
             <p><strong>Gewijzigd op: </strong> <?= esc($location->updated_at) ?></p>
             <p><strong>Status: </strong> <?= esc($location->status ? 'Aktief' : 'Niet aktief'); ?></p>
-            <p><strong>Afdeling: </strong> <?= esc($location->departmentname) ?></p>
 
             <p><strong>Omschrijving: </strong></p>
             <textarea name="" id="" cols="85" rows="40"><?= esc($location->description) ?></textarea>
