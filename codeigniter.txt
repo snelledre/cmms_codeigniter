@@ -1,0 +1,100 @@
+source ~/.bash_profile
+source ~/.bashrc
+php spark auth:cleanup
+
+php spark make:migration AlterTableUsers
+php spark make:migration CreateDepartments
+php spark make:migration CreateLocations
+php spark make:migration CreateInstallations
+php spark make:migration CreateExternalWorks
+php spark make:migration CreateMessages
+php spark make:migration CreateLogs
+php spark make:migration FailTypes
+php spark make:migration JobTypes
+php spark make:migration Costcenters
+php spark make:migration Vendors
+php spark make:migration lubricants
+php spark make:migration CreateProgress
+php spark make:migration CreateWorkorders
+php spark migrate
+php spark migrate:refresh
+php spatk migrate --all
+
+php spark make:model User --suffix
+php spark make:model Department --suffix
+php spark make:model Location --suffix
+php spark make:model Externalwork --suffix
+php spark make:model Installation --suffix
+php spark make:model Failtype --suffix
+php spark make:model Jobtype --suffix
+php spark make:model Costcenter --suffix
+php spark make:model Vendor --suffix
+php spark make:model Lubricant --suffix
+php spark make:model Log --suffix
+php spark make:model Progress --suffix
+php spark make:model Workorder --suffix
+
+php spark make:filter LoggedInFilter
+
+php spark make:validation Userrules
+
+php spark make:controller User --suffix
+php spark make:controller Externalworks --suffix
+php spark make:controller Installations --suffix
+php spark make:controller Departments --suffix
+php spark make:controller Locations --suffix
+php spark make:controller Machines --suffix
+php spark make:controller Activities --suffix
+php spark make:controller Products --suffix
+php spark make:controller Workorders --suffix
+php spark make:controller Products --restful
+php spark make:controller Products --restful
+php spark make:controller Admin/Failtypes --restful
+php spark make:controller Admin/Failtypes --suffix
+php spark make:controller Admin/Jobtypes --suffix
+php spark make:controller Admin/Costcenters --suffix
+php spark make:controller Vendors --suffix
+php spark make:controller Back/Lubrications --suffix
+php spark make:controller Admin/Progress --suffix
+
+php spark make:seeder UserSeeder
+php spark make:seeder EstablishmentSeeder
+php spark make:seeder DepartmentSeeder
+php spark make:seeder LocationSeeder
+php spark make:seeder FailtypeSeeder
+php spark make:seeder CostcenterSeeder
+php spark make:seeder VendorSeeder
+php spark make:seeder LubricationSeeder
+php spark make:seeder ProgressSeeder
+php spark db:seed UserSeeder
+php spark db:seed DepartmentSeeder
+php spark db:seed LocationSeeder
+php spark db:seed InstallationSeeder
+php spark db:seed FailtypeSeeder
+php spark db:seed JobtypeSeeder
+php spark db:seed CostcenterSeeder
+php spark db:seed VendorSeeder
+php spark db:seed LubricantSeeder
+php spark db:seed ProgressSeeder
+
+php spark make:migration AddAccountActivationToUser
+
+<?=lang('User.')?>
+<?= site_url('') ?>
+
+
+function categoryTree($parent_id = 0, $sub_mark = ''){
+    global $db;
+    $query = $db->query("SELECT * FROM categories WHERE parent_id = $parent_id ORDER BY name ASC");
+   
+    if($query->num_rows > 0){
+        while($row = $query->fetch_assoc()){
+            echo '<option value="'.$row['id'].'">'.$sub_mark.$row['name'].'</option>';
+            categoryTree($row['id'], $sub_mark.'---');
+        }
+    }
+}
+
+
+git init
+git aad .

@@ -1,0 +1,16 @@
+{
+  "lubricants": [
+    {
+      "supplier": "Supplier 1",
+      "name": "Name 1",
+      "description": "Test 1",
+      "status": "1"
+    },
+    {
+      "supplier": "Supplier 2",
+      "name": "Name 2",
+      "description": "Test 2",
+      "status": "1"
+    }
+  ]
+}
